@@ -1,0 +1,57 @@
+facus_tree {
+	id = BUC_initial  # 该颗国策树的 id, 取值任意, 必须唯一
+
+	# 设定可用此国策树的国家
+	country = {
+		# 对于所有国家来说，采用这套国策树的权重是 0
+		factor = 0
+
+		# 修饰符, 将此国策树以 10 的权重赋予 TAG 为 BUC 的国家 (# DETERM: 语义待证伪)
+		modifier = {
+			add = 10
+			# factor = 10  # 意味着权重被定为 10
+			# add = 10  # 意味着权重追加 10
+			tag = BUC 
+		}
+	}
+
+	default = no
+
+	# 设定持续性国策的位置
+	continuous_focus_position = { x = 100 y = 100}
+
+	focus = {
+		id = BUC_create_tactical_air_force
+		icon = GFX_focus_generic_long_range_aircraft  # 绑定图标
+		# prerequisite = {}
+		# mutually_exclusive = {}
+		x = 5  # 确定国策图标在**国策树网格**中的位置
+		y = 0
+		cost = 10  # 实际天数 = cost * 7; 其中 cost 可以为小数，实际天数结果截断为整数
+	
+		# AI 点国策的倾向
+		ai_will_do = {
+			base = 1
+			# 当这个国家是德国时，权重加 10
+			modifier {
+				add = 10
+				tag = GER
+			}
+		}
+		# 前提条件
+		availabvle = {
+			# 跟法国交战时才能点这个国策
+			has_war_with = FRA
+		}
+		# 跳过国策
+		bypass = {
+			tag = ENG
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_war_support = 0.1
+		}
+	}
+
+
+}

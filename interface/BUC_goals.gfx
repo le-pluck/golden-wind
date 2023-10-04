@@ -1,0 +1,6 @@
+SpriteTypes = {
+	SpriteType = {
+		name = "GFX_goal_BUC_create_tactical_air_force"
+		texturefile = "gfx/interface/goals/focus_ITA_mare_nostrum.dds"
+	}
+}
